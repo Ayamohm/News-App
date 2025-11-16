@@ -11,6 +11,7 @@ class CustomTextField extends StatelessWidget {
   final String? Function(String?)? validator;
   final TextInputType? keyboardType;
   final int? maxLines;
+  final void Function(String)? onFieldSubmitted;
   const CustomTextField(
       {super.key,
       this.hintText,
@@ -20,7 +21,9 @@ class CustomTextField extends StatelessWidget {
       this.controller,
       this.keyboardType,
       this.validator,
-      this.maxLines});
+      this.maxLines,
+        this.onFieldSubmitted,
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +37,7 @@ class CustomTextField extends StatelessWidget {
             obscureText: isPassword ?? false,
             cursorColor: AppColors.blackColor,
             keyboardType: keyboardType ?? TextInputType.text,
+            onFieldSubmitted: onFieldSubmitted,
             decoration: InputDecoration(
               hintText: hintText ?? "",
               hintStyle: TextStyle(
