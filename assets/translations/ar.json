@@ -7,5 +7,8 @@
     "cancel": "إلغاء",
     "search_result": "نتيجة البحث",
     "no_results": "لا يوجد نتائج",
-  "search_placeholder": "بحث"
+  "search_placeholder": "بحث",
+  "sports": "رياضة",
+  "health": "صحة",
+  "science": "علوم"
 }
