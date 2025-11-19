@@ -3,21 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/styles/app_text_styles.dart';
 import 'package:news_app/core/widgets/spacing_widgets.dart';
-import 'package:news_app/features/home_screen/models/top_headlines_model.dart';
 import 'package:news_app/features/home_screen/widgets/article_card_widget.dart';
 import 'package:intl/intl.dart';
-import 'searvices/search_result_services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'search_bloc/search_bloc.dart';
 
 class searchResultScreen extends StatelessWidget {
+  final String query;
   const searchResultScreen({super.key, required this.query});
-final String query;
-const searchResultScreen.query(this.query);
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SearchBloc(),
+      create: (context) => SearchBloc()..add(SearchNewsEvent(query)),
       child: Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -77,8 +74,9 @@ const searchResultScreen.query(this.query);
                 ],
               );
             }
+            return const Center(child: Text('No results found'));
           }
-          return const Center(child: Text('No results found'));
+          return const SizedBox();
         },
       ),
       )

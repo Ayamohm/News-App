@@ -49,7 +49,7 @@ DateTime time=DateTime.now();
                 }
                 if(state is HomeSuccess){
                   final topHeadlinesModel =state.data;
-                  if(topHeadlinesModel.totalResults==0){
+                  if(topHeadlinesModel.articles == null || topHeadlinesModel.articles!.isEmpty){
                     return Center(
                       child: Text(
                         'no results',
@@ -103,8 +103,8 @@ DateTime time=DateTime.now();
                               TopHeadlineItemWidget(
                                 title: topHeadlinesModel.articles![0].title??"",
                                 authorName: topHeadlinesModel.articles![0].author??"",
-                                date: DateFormat('MMMM d, y').format(topHeadlinesModel.articles![0].publishedAt!),
-                                imageUrl: topHeadlinesModel.articles![0].urlToImage,
+                                date: topHeadlinesModel.articles![0].publishedAt !=null?DateFormat('MMMM d, y').format(topHeadlinesModel.articles!.first.publishedAt!):"",
+                                imageUrl: topHeadlinesModel.articles![0].urlToImage ??"",
                               ),
                               const HeightSpace(24),
                               Expanded(
@@ -117,8 +117,8 @@ DateTime time=DateTime.now();
                                         return ArticleCardWidget(
                                           title: topHeadlinesModel.articles![index].title??"",
                                           authorName: topHeadlinesModel.articles![index].author??"",
-                                          date: DateFormat('MMMM d, y').format(topHeadlinesModel.articles![index].publishedAt!),
-                                          imageUrl: topHeadlinesModel.articles![index].urlToImage,
+                                          date: topHeadlinesModel.articles![index].publishedAt!=null?DateFormat('MMMM d, y').format(topHeadlinesModel.articles![index].publishedAt!):"",
+                                          imageUrl: topHeadlinesModel.articles![index].urlToImage??"",
                                           onTap: () {
                                             GoRouter.of(context).pushNamed(AppRoutes.articleDetailsScreen,extra: topHeadlinesModel.articles![index]);
                                           },
